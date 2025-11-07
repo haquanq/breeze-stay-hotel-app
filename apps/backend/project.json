@@ -10,10 +10,14 @@
         "command": "mvn clean package -f apps/backend/pom.xml"
       }
     },
-    "serve": {
+    "dev": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "mvn spring-boot:run -f apps/backend/pom.xml"
+        "commands": [
+          "docker compose -f apps/backend/docker-compose.yml -p hotel_db up -d",
+          "mvn spring-boot:run -f apps/backend/pom.xml"
+        ],
+        "parallel": false
       }
     },
     "clean-install": {
