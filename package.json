@@ -2,7 +2,9 @@
   "name": "breeze-stay-hotel-app",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "dev": "nx run-many --target=dev --all"
+  },
   "private": true,
   "devDependencies": {
     "@nx/js": "22.0.2",
