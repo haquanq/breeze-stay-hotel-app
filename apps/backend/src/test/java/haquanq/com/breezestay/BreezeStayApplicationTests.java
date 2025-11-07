@@ -1,11 +1,11 @@
-package haquanq.com.hotel_backend;
+package haquanq.com.breezestay;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Configuration;
 
 @SpringBootTest
-class HotelBackendApplicationTests {
+class BreezeStayApplicationTests {
 
     @Configuration
     static class TestConfig {}

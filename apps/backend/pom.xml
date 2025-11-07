@@ -12,9 +12,9 @@
         <!-- lookup parent from repository -->
     </parent>
     <groupId>haquanq.com</groupId>
-    <artifactId>backend</artifactId>
+    <artifactId>breezestay</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>backend</name>
+    <name>breezestay</name>
     <description>Hotel application to manage hotel activities such as reservation/booking with rooms and amenities</description>
     <url />
     <licenses>
