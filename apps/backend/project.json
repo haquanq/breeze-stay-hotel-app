@@ -15,6 +15,12 @@
       "options": {
         "command": "mvn spring-boot:run -f apps/backend/pom.xml"
       }
+    },
+    "clean-install": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "mvn clean install -f apps/backend/pom.xml"
+      }
     }
   },
   "implicitDependencies": ["backend"]
