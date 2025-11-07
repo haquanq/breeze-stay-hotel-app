@@ -23,7 +23,7 @@
     "clean-install": {
       "executor": "nx:run-commands",
       "options": {
-        "command": "mvn clean install -f apps/backend/pom.xml"
+        "command": "mvn clean install -f apps/backend/pom.xml -U"
       }
     }
   },
