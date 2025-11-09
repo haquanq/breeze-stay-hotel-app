@@ -1,4 +1,4 @@
-package haquanq.com.breezestay.config;
+package com.haquanq.breezestay.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

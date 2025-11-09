@@ -1,4 +1,4 @@
-package haquanq.com.breezestay;
+package com.haquanq.breezestay;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
