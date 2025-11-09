@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9FD1B5A7-7BC2-4C32-B8ED-2695F8F2AF89}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HotelManagement.Domain</RootNamespace>
+    <AssemblyName>HotelManagement.Domain</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Dapper.2.1.24\lib\net461\Dapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.11.9.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Dtos\Room\RoomCreateDto.cs" />
+    <Compile Include="Dtos\Room\RoomUpdateDto.cs" />
+    <Compile Include="Dtos\Auth\UserLoginDto.cs" />
+    <Compile Include="Dtos\Auth\CurrentUserDto.cs" />
+    <Compile Include="Dtos\Customer\CustomerViewDtoMapper.cs" />
+    <Compile Include="Dtos\HotelService\HotelServiceUpdateDto.cs" />
+    <Compile Include="Dtos\HotelService\HotelServiceCreateDto.cs" />
+    <Compile Include="Exceptions\Auth\UnauthenticatedException.cs" />
+    <Compile Include="Models\RoomAmenityModel.cs" />
+    <Compile Include="Dtos\HotelService\HotelServiceSearchDto.cs" />
+    <Compile Include="Dtos\RoomType\RoomTypeSearchDto.cs" />
+    <Compile Include="Dtos\Room\RoomSearchDto.cs" />
+    <Compile Include="Dtos\Staff\EmployeeSearchDto.cs" />
+    <Compile Include="Dtos\DiscountCoupon\DiscountCouponSearchDto.cs" />
+    <Compile Include="Dtos\Amentiy\AmenitySearchDto.cs" />
+    <Compile Include="Repositories\HotelService\HotelServiceRepository.cs" />
+    <Compile Include="Repositories\HotelService\IHotelServiceRepository.cs" />
+    <Compile Include="Repositories\Room\IRoomRepository.cs" />
+    <Compile Include="Repositories\Room\RoomRepository.cs" />
+    <Compile Include="Dtos\Customer\CustomerSearchDto.cs" />
+    <Compile Include="Dtos\Customer\CustomerUpdateDto.cs" />
+    <Compile Include="Dtos\Customer\CustomerCreateDto.cs" />
+    <Compile Include="Dtos\Customer\CustomerViewDto.cs" />
+    <Compile Include="Dtos\DiscountCoupon\DiscountCouponUpdateDto.cs" />
+    <Compile Include="Dtos\DiscountCoupon\DiscountCouponCreateDto.cs" />
+    <Compile Include="Dtos\Reservation\ReservationSearchDto.cs" />
+    <Compile Include="Dtos\Reservation\ReservationUpdateDto.cs" />
+    <Compile Include="Dtos\Reservation\ReservationCreateDto.cs" />
+    <Compile Include="Dtos\Reservation\ReservationViewDto.cs" />
+    <Compile Include="Dtos\Staff\StaffUpdateDto.cs" />
+    <Compile Include="Dtos\Staff\StaffCreateDto.cs" />
+    <Compile Include="Dtos\RoomType\RoomTypeUpdateDto.cs" />
+    <Compile Include="Dtos\RoomType\RoomTypeCreateDto.cs" />
+    <Compile Include="Dtos\Amentiy\AmenityUpdateDto.cs" />
+    <Compile Include="Dtos\Staff\StaffViewDto.cs" />
+    <Compile Include="Dtos\Staff\StaffViewDtoMapper.cs" />
+    <Compile Include="Enums\DiscountCouponStatus.cs" />
+    <Compile Include="Enums\CustomerStatus.cs" />
+    <Compile Include="Enums\HotelServiceUsageStatus.cs" />
+    <Compile Include="Enums\ReservationStatus.cs" />
+    <Compile Include="Enums\RoomAmenityUsageStatus.cs" />
+    <Compile Include="Enums\AmenityStatus.cs" />
+    <Compile Include="Enums\RoomStatus.cs" />
+    <Compile Include="Enums\StaffRole.cs" />
+    <Compile Include="Enums\StaffAccountStatus.cs" />
+    <Compile Include="Dtos\Amentiy\AmenityCreateDto.cs" />
+    <Compile Include="Models\AmenityModel.cs" />
+    <Compile Include="Models\CustomerModel.cs" />
+    <Compile Include="Models\DiscountCouponModel.cs" />
+    <Compile Include="Models\HotelServiceModel.cs" />
+    <Compile Include="Models\HotelServiceUsageModel.cs" />
+    <Compile Include="Models\ReservationModel.cs" />
+    <Compile Include="Models\ReservationRoomModel.cs" />
+    <Compile Include="Models\RoomModel.cs" />
+    <Compile Include="Models\RoomAmenityUsageModel.cs" />
+    <Compile Include="Models\RoomTypeModel.cs" />
+    <Compile Include="Models\StaffModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Customer\ICustomerRepository.cs" />
+    <Compile Include="Repositories\DiscountCoupon\DiscountCouponRepository.cs" />
+    <Compile Include="Repositories\DiscountCoupon\IDiscountCouponRepository.cs" />
+    <Compile Include="Repositories\Customer\CustomerRepository.cs" />
+    <Compile Include="Repositories\Amenity\IAmenityRepository.cs" />
+    <Compile Include="Repositories\Amenity\AmenityRepository.cs" />
+    <Compile Include="Repositories\RoomType\IRoomTypeRepository.cs" />
+    <Compile Include="Repositories\Staff\IEmployeeRepository.cs" />
+    <Compile Include="Repositories\RoomType\RoomTypeRepository.cs" />
+    <Compile Include="Repositories\Staff\EmployeeRepository.cs" />
+    <Compile Include="Services\Room\IRoomService.cs" />
+    <Compile Include="Services\Room\RoomService.cs" />
+    <Compile Include="Services\HotelService\HotelServiceService.cs" />
+    <Compile Include="Services\Auth\IAuthService.cs" />
+    <Compile Include="Services\Auth\AuthService.cs" />
+    <Compile Include="Services\Customer\ICustomerService.cs" />
+    <Compile Include="Services\DiscountCoupon\DiscountCouponService.cs" />
+    <Compile Include="Services\DiscountCoupon\IDiscountCouponService.cs" />
+    <Compile Include="Services\HotelService\IHotelServiceService.cs" />
+    <Compile Include="Services\RoomType\IRoomTypeService.cs" />
+    <Compile Include="Services\Staff\IEmployeeService.cs" />
+    <Compile Include="Services\Staff\EmployeeService.cs" />
+    <Compile Include="Services\Customer\CustomerService.cs" />
+    <Compile Include="Services\RoomType\RoomTypeService.cs" />
+    <Compile Include="Services\Amenity\AmenityService.cs" />
+    <Compile Include="Services\Amenity\IAmenityService.cs" />
+    <Compile Include="Validators\Customer\CustomerUpdateDtoValidator.cs" />
+    <Compile Include="Validators\Customer\CustomerCreateDtoValidator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HotelManagement.Infrastructure\HotelManagement.Infrastructure.csproj">
+      <Project>{74e71615-45d8-4657-88cd-f3246741bc20}</Project>
+      <Name>HotelManagement.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_temp\Amenitiy\Dtos\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

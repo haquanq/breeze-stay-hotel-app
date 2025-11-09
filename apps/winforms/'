@@ -1,0 +1,148 @@
+using HotelManagement.Domain.Helpers;
+using HotelManagement.Domain.Enums;
+using HotelMangement.WinformApp.Common;
+using System;
+using System.Data;
+using System.Drawing;
+using System.Windows.Forms;
+
+namespace HotelManagement.WinformApp.Views.Customer
+{
+    public partial class CustomerView : Form, ICustomerView
+    {
+        public string SelectedCustomerId
+        {
+            get
+            {
+                if (grvCustomer.CurrentRow == null) return null;
+                return grvCustomer.CurrentRow.Cells["CustomerId"].Value.ToString();
+            }
+        }
+        public StaffRole CurrentUserRole { get; set; }
+        private IPaginationView _paginationView { get; set; }
+
+        public CustomerStatus SelectedCustomerStatus { get => (CustomerStatus)cbbCustomerStatus.SelectedValue; }
+        public string SelectedCustomerSearchField { get => (string)cbbCustomerSearchField.SelectedValue; }
+        public bool UsingFilterCustomerStatus { get => cbbCustomerStatus.SelectedIndex != 0; }
+        public bool UsingFilterCustomerSearchField { get => cbbCustomerSearchField.SelectedIndex != 0; }
+        public string CustomerSearchText { get => txtCustomerSearch.Text; }
+        public int CustomerPageCount { get => _paginationView.PageCount; set => _paginationView.PageCount = value; }
+        public int CustomerPageSize { get => _paginationView.PageSize; set => _paginationView.PageSize = value; }
+        public int CustomerPageNumber { get => _paginationView.PageNumber; set => _paginationView.PageNumber = value; }
+        public int CustomerRowCount { get => _paginationView.RowCount; set => _paginationView.RowCount = value; }
+
+
+        public event EventHandler OnViewLoad;
+        public event EventHandler OnViewDisposed;
+        public event EventHandler OnCustomerUpdateViewOpen;
+        public event EventHandler OnCustomerCreateViewOpen;
+        public event EventHandler OnCustomerDetailViewOpen;
+        public event EventHandler OnCustomerPaginationChange;
+        public event EventHandler OnCustomerFilterChange;
+
+        public CustomerView()
+        {
+            InitializeComponent();
+
+            /// ui
+            var pageMenu = new PaginationView { Dock = DockStyle.Fill, TopLevel = false };
+            pnPagination.Controls.Add(pageMenu);
+            _paginationView = pageMenu;
+
+            grvCustomer.Columns["CreatedAt"].DefaultCellStyle.Format = "dd-MM-yyyy";
+            grvCustomer.Columns["UpdatedAt"].DefaultCellStyle.Format = "dd-MM-yyyy";
+
+            /// evnets
+            Load += delegate { OnViewLoad?.Invoke(this, EventArgs.Empty); };
+            btnShowCustomerCreateView.Click += delegate { OnCustomerCreateViewOpen?.Invoke(this, EventArgs.Empty); };
+            btnShowCustomerUpdateView.Click += delegate { OnCustomerUpdateViewOpen?.Invoke(this, EventArgs.Empty); };
+            btnShowCustomerDetailView.Click += delegate { OnCustomerDetailViewOpen?.Invoke(this, EventArgs.Empty); };
+
+            btnCustomerSearch.Click += delegate { OnCustomerFilterChange?.Invoke(this, EventArgs.Empty); };
+            grvCustomer.CellPainting += delegate { PaintCustomerStatusColor(); };
+            _paginationView.OnPaginationChange += delegate { OnCustomerPaginationChange?.Invoke(this, EventArgs.Empty); };
+            cbbCustomerStatus.SelectionChangeCommitted += delegate { OnCustomerFilterChange?.Invoke(this, EventArgs.Empty); };
+            cbbCustomerSearchField.SelectionChangeCommitted += delegate { HandleSelectedSearchFieldChange(); };
+
+        }
+
+        private void HandleSelectedSearchFieldChange()
+        {
+            if (UsingFilterCustomerSearchField)
+            {
+                txtCustomerSearch.Enabled = true;
+                txtCustomerSearch.Text = "";
+                txtCustomerSearch.BackColor = SystemColors.Window;
+                return;
+            };
+            StyleDisabledSearchBar(txtCustomerSearch);
+
+            OnCustomerFilterChange?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void StyleDisabledSearchBar(TextBox box)
+        {
+            box.Text = "Search...";
+            box.Enabled = false;
+            box.BackColor = SystemColors.Window;
+        }
+
+
+        private void HandleCurrentUserPermission()
+        {
+            if (CurrentUserRole == StaffRole.MANAGER)
+            {
+                btnShowCustomerCreateView.Visible = true;
+                btnShowCustomerUpdateView.Visible = true;
+            }
+            if (CurrentUserRole == StaffRole.RECEPTIONIST)
+            {
+                btnShowCustomerCreateView.Visible = true;
+                btnShowCustomerUpdateView.Visible = true;
+            }
+            if (CurrentUserRole == StaffRole.HOUSEKEEPER)
+            {
+                btnShowCustomerCreateView.Visible = false;
+                btnShowCustomerUpdateView.Visible = false;
+            }
+            if (CurrentUserRole == StaffRole.ADMIN)
+            {
+                btnShowCustomerCreateView.Visible = false;
+                btnShowCustomerUpdateView.Visible = false;
+            }
+        }
+
+        public void SetupCustomerGridView(DataTable dtbCustomer)
+        {
+            grvCustomer.DataSource = dtbCustomer;
+        }
+
+        public void SetupCustomerSearchTypeComboBox(DataTable dtbCustomerSearchTYpe, string displayMember, string valueMember)
+        {
+            cbbCustomerSearchField.DataSource = dtbCustomerSearchTYpe;
+            cbbCustomerSearchField.DisplayMember = displayMember;
+            cbbCustomerSearchField.ValueMember = valueMember;
+        }
+
+        public void SetupCustomerStatusComboBox(DataTable dtbCustomerStatus, string displayMember, string valueMember)
+        {
+            cbbCustomerStatus.DataSource = dtbCustomerStatus;
+            cbbCustomerStatus.DisplayMember = displayMember;
+            cbbCustomerStatus.ValueMember = valueMember;
+        }
+
+        private void PaintCustomerStatusColor()
+        {
+            foreach (DataGridViewRow row in grvCustomer.Rows)
+            {
+                if (Enum.TryParse(row.Cells["status"].Value.ToString(), out CustomerStatus status))
+                {
+                    var backColor = ColorTranslator.FromHtml(new CustomerStatusHelper().Color(status).Light);
+                    var foreColor = Color.FromArgb(38, 38, 38);
+                    row.Cells["status"].Style.BackColor = backColor;
+                    row.Cells["status"].Style.ForeColor = foreColor;
+                }
+            }
+        }
+    }
+}

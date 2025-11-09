@@ -1,0 +1,70 @@
+# Visual Studio files and directories
+.vs/
+*.suo
+*.user
+*.userprefs
+*.sln.docstates
+*.vssscc
+*.vspscc
+*.vsscc
+*.scc
+
+# Build artifacts
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+*.pdb
+*.ilk
+*.aps
+*.bsc
+*.idb
+*.lib
+*.ncb
+*.pch
+*.res
+*.sbr
+*.tlb
+*.tlh
+*.tmp
+*.bak
+*.cache
+*.log
+*.obj
+*.exe
+*.dll
+*.mui
+*.winmd
+*.pri
+*.appx
+*.appxbundle
+*.appxsym
+*.xap
+*.msi
+*.msp
+*.mrt
+*.cer
+*.pfx
+*.snk
+
+# Resharper files
+_ReSharper*/
+*.DotSettings.user
+
+# NuGet packages
+packages/
+
+# Project-specific files
+*.orig
+*.rej
+*.bak
+*.old
+*.obj
+*.ipch
+
+# User-specific files
+Thumbs.db
+Desktop.ini
+
+# Windows Forms specific files
+*.Designer.cs.bak

@@ -1,0 +1,606 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props" Condition="Exists('..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E7AFAB97-65B4-434D-8E46-2ED3C933577C}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>HotelManagement</RootNamespace>
+    <AssemblyName>HotelManagement</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=7.1.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.7.1.0\lib\netstandard2.0\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Bogus, Version=35.3.0.0, Culture=neutral, PublicKeyToken=fa1bb3f3f218129a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bogus.35.3.0\lib\net40\Bogus.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=11.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.11.9.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1586.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=16.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.160.1000.6\lib\net462\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.5.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.7.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.4.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.5.3\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configs\AmenityViewConfig.cs" />
+    <Compile Include="Configs\CustomerViewConfig.cs" />
+    <Compile Include="Configs\DiscountCouponViewConfig.cs" />
+    <Compile Include="Configs\HotelServiceUsageViewConfig.cs" />
+    <Compile Include="Configs\ReservationViewConfig.cs" />
+    <Compile Include="Common\ResourceStatusColor.cs" />
+    <Compile Include="Configs\RoomAmenityUsageViewConfig.cs" />
+    <Compile Include="Configs\RoomViewConfig.cs" />
+    <Compile Include="Configs\EmployeeViewConfig.cs" />
+    <Compile Include="Constants\MaterialColor.cs" />
+    <Compile Include="Controls\PaginationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PaginationControl.Designer.cs">
+      <DependentUpon>PaginationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Enums\MessageType.cs" />
+    <Compile Include="Modules\MainRegistrationMoldule.cs" />
+    <Compile Include="Modules\HotelServiceRegistrationModule.cs" />
+    <Compile Include="Modules\AmenityRegistrationModule.cs" />
+    <Compile Include="Modules\DiscountCouponRegistrationModule.cs" />
+    <Compile Include="Modules\RoomTypeRegistrationModule.cs" />
+    <Compile Include="Modules\EmployeeRegistrationModule.cs" />
+    <Compile Include="Modules\CustomerRegistrationModule.cs" />
+    <Compile Include="Presenters\HotelService\HotelServiceCreatePresenter.cs" />
+    <Compile Include="Presenters\HotelService\HotelServicePresenter.cs" />
+    <Compile Include="Presenters\HotelService\HotelServiceUpdatePresenter.cs" />
+    <Compile Include="Presenters\Amenity\AmenityUpdatePresenter.cs" />
+    <Compile Include="Presenters\Amenity\AmenityAddPresenter.cs" />
+    <Compile Include="Presenters\Amenity\AmenityPresenter.cs" />
+    <Compile Include="Presenters\Customer\CustomerAddPresenter.cs" />
+    <Compile Include="Presenters\Customer\CustomerPresenter.cs" />
+    <Compile Include="Presenters\Customer\CustomerUpdatePresenter.cs" />
+    <Compile Include="Presenters\DiscountCoupon\DiscountCouponUpdatePresenter.cs" />
+    <Compile Include="Presenters\DiscountCoupon\DiscountCouponAddPresenter.cs" />
+    <Compile Include="Presenters\DiscountCoupon\DiscountCouponPresenter.cs" />
+    <Compile Include="Presenters\Main\LoginPresenter.cs" />
+    <Compile Include="Presenters\Main\MainPresenter.cs" />
+    <Compile Include="Presenters\Reservation\ReservationPresenter.cs" />
+    <Compile Include="Presenters\RoomType\RoomTypeUpdatePresenter.cs" />
+    <Compile Include="Presenters\RoomType\RoomTypeCreatePresenter.cs" />
+    <Compile Include="Presenters\RoomType\RoomTypePresenter.cs" />
+    <Compile Include="Presenters\Room\RoomAddPresenter.cs" />
+    <Compile Include="Presenters\Room\RoomPresenter.cs" />
+    <Compile Include="Views\Amenity\IAmenityUpdateView.cs" />
+    <Compile Include="Views\Amenity\IAmenityAddView.cs" />
+    <Compile Include="Views\Amenity\IAmenityView.cs" />
+    <Compile Include="Abstracts\IView.cs" />
+    <Compile Include="Views\Customer\ICustomerDetailView.cs" />
+    <Compile Include="Views\Customer\ICustomerAddView.cs" />
+    <Compile Include="Views\Customer\ICustomerView.cs" />
+    <Compile Include="Views\Customer\ICustomerUpdateView.cs" />
+    <Compile Include="Views\DiscountCoupon\IDiscountCouponUpdateView.cs" />
+    <Compile Include="Views\DiscountCoupon\IDiscountCouponView.cs" />
+    <Compile Include="Views\DiscountCoupon\IDiscountCouponAddView.cs" />
+    <Compile Include="Views\HotelService\IHotelServiceAddView.cs" />
+    <Compile Include="Views\HotelService\IHotelServiceUpdateView.cs" />
+    <Compile Include="Views\HotelService\IHotelServiceView.cs" />
+    <Compile Include="Views\Main\ILoginView.cs" />
+    <Compile Include="Views\Main\IMainView.cs" />
+    <Compile Include="Views\Reservation\IReservationView.cs" />
+    <Compile Include="Views\RoomType\IRoomTypeUpdateView.cs" />
+    <Compile Include="Views\RoomType\IRoomTypeAddView.cs" />
+    <Compile Include="Views\RoomType\IRoomTypeView.cs" />
+    <Compile Include="Views\Room\IRoomAddView.cs" />
+    <Compile Include="Views\Room\IRoomView.cs" />
+    <Compile Include="Views\Staff\IEmployeeView.cs" />
+    <Compile Include="Presenters\Employee\EmployeePresenter.cs" />
+    <Compile Include="Presenters\Employee\EmployeeUpdatePresenter.cs" />
+    <Compile Include="Presenters\Employee\EmployeeAddPresenter.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Views\Report\ReportDataSet.cs">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\ReportDataSet.Designer.cs">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerUpdateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerUpdateView.Designer.cs">
+      <DependentUpon>CustomerUpdateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiscountCoupon\DiscountCouponView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DiscountCoupon\DiscountCouponView.Designer.cs">
+      <DependentUpon>DiscountCouponView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiscountCoupon\DiscountCouponAddView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DiscountCoupon\DiscountCouponAddView.Designer.cs">
+      <DependentUpon>DiscountCouponAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DiscountCoupon\DiscountCouponUpdateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\DiscountCoupon\DiscountCouponUpdateView.Designer.cs">
+      <DependentUpon>DiscountCouponUpdateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerDetailView.Designer.cs">
+      <DependentUpon>CustomerDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HotelServiceUsage\FormHotelServiceUsageUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HotelServiceUsage\FormHotelServiceUsageUpdate.Designer.cs">
+      <DependentUpon>FormHotelServiceUsageUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HotelServiceUsage\FormHotelServiceUsageCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HotelServiceUsage\FormHotelServiceUsageCreate.Designer.cs">
+      <DependentUpon>FormHotelServiceUsageCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HotelServiceUsage\FormHotelServiceUsage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HotelServiceUsage\FormHotelServiceUsage.Designer.cs">
+      <DependentUpon>FormHotelServiceUsage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HotelService\HotelServiceUpdateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HotelService\HotelServiceUpdateView.Designer.cs">
+      <DependentUpon>HotelServiceUpdateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HotelService\HotelServiceAddView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HotelService\HotelServiceAddView.Designer.cs">
+      <DependentUpon>HotelServiceAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\MainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\LoginView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\LoginView.Designer.cs">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HotelService\HotelServiceView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\HotelService\HotelServiceView.Designer.cs">
+      <DependentUpon>HotelServiceView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Report\FormReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Report\FormReport.Designer.cs">
+      <DependentUpon>FormReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationCheckOutView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationCheckOutView.Designer.cs">
+      <DependentUpon>ReservationCheckOutView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationServiceUsageCreateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationServiceUsageCreateView.Designer.cs">
+      <DependentUpon>ReservationServiceUsageCreateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationServiceUsageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationServiceUsageView.Designer.cs">
+      <DependentUpon>ReservationServiceUsageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationUpdateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationUpdateView.Designer.cs">
+      <DependentUpon>ReservationUpdateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationCreateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationCreateView.Designer.cs">
+      <DependentUpon>ReservationCreateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomAmenityUsage\FormRoomAmenityUsageCreate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RoomAmenityUsage\FormRoomAmenityUsageCreate.Designer.cs">
+      <DependentUpon>FormRoomAmenityUsageCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomAmenityUsage\FormRoomAmenityUsageUpdate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RoomAmenityUsage\FormRoomAmenityUsageUpdate.Designer.cs">
+      <DependentUpon>FormRoomAmenityUsageUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationView.Designer.cs">
+      <DependentUpon>ReservationView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Reservation\ReservationDetailView.Designer.cs">
+      <DependentUpon>ReservationDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Room\RoomDetailView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Room\RoomDetailView.Designer.cs">
+      <DependentUpon>RoomDetailView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Room\RoomView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Room\RoomView.Designer.cs">
+      <DependentUpon>RoomView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Room\RoomUpdateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Room\RoomUpdateView.Designer.cs">
+      <DependentUpon>RoomUpdateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Room\RoomAddView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Room\RoomAddView.Designer.cs">
+      <DependentUpon>RoomAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Amenity\AmenityView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Amenity\AmenityView.Designer.cs">
+      <DependentUpon>AmenityView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Amenity\AmenityAddView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Amenity\AmenityAddView.Designer.cs">
+      <DependentUpon>AmenityAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Amenity\AmenityUpdateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Amenity\AmenityUpdateView.Designer.cs">
+      <DependentUpon>AmenityUpdateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomType\RoomTypeView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RoomType\RoomTypeView.Designer.cs">
+      <DependentUpon>RoomTypeView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomType\RoomTypeAddView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RoomType\RoomTypeAddView.Designer.cs">
+      <DependentUpon>RoomTypeAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomType\RoomTypeUpdateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\RoomType\RoomTypeUpdateView.Designer.cs">
+      <DependentUpon>RoomTypeUpdateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\StaffUpdateView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\StaffUpdateView.Designer.cs">
+      <DependentUpon>StaffUpdateView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\StaffAddView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\StaffAddView.Designer.cs">
+      <DependentUpon>StaffAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\StaffView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Staff\StaffView.Designer.cs">
+      <DependentUpon>StaffView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Main\DashboardView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Main\DashboardView.Designer.cs">
+      <DependentUpon>DashboardView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerAddView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerAddView.Designer.cs">
+      <DependentUpon>CustomerAddView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Customer\CustomerView.Designer.cs">
+      <DependentUpon>CustomerView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Staff\IEmployeeUpdateView.cs" />
+    <Compile Include="Views\Staff\IEmployeeAddView.cs" />
+    <EmbeddedResource Include="Controls\PaginationControl.resx">
+      <DependentUpon>PaginationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Views\Report\ReportHotelRevenue.rdlc" />
+    <EmbeddedResource Include="Views\Report\ReportRoomList.rdlc" />
+    <EmbeddedResource Include="Views\Report\ReportStaffList.rdlc" />
+    <EmbeddedResource Include="Views\Report\ReportCustomerList.rdlc" />
+    <EmbeddedResource Include="Views\Report\ReportCustomerBalance.rdlc" />
+    <EmbeddedResource Include="Views\Report\InvoiceReservation.rdlc" />
+    <EmbeddedResource Include="Views\Report\ReportRoomRevenue.rdlc" />
+    <EmbeddedResource Include="Views\Customer\CustomerUpdateView.resx">
+      <DependentUpon>CustomerUpdateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DiscountCoupon\DiscountCouponView.resx">
+      <DependentUpon>DiscountCouponView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DiscountCoupon\DiscountCouponAddView.resx">
+      <DependentUpon>DiscountCouponAddView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\DiscountCoupon\DiscountCouponUpdateView.resx">
+      <DependentUpon>DiscountCouponUpdateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Customer\CustomerDetailView.resx">
+      <DependentUpon>CustomerDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HotelServiceUsage\FormHotelServiceUsageUpdate.resx">
+      <DependentUpon>FormHotelServiceUsageUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HotelServiceUsage\FormHotelServiceUsageCreate.resx">
+      <DependentUpon>FormHotelServiceUsageCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HotelServiceUsage\FormHotelServiceUsage.resx">
+      <DependentUpon>FormHotelServiceUsage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HotelService\HotelServiceUpdateView.resx">
+      <DependentUpon>HotelServiceUpdateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HotelService\HotelServiceAddView.resx">
+      <DependentUpon>HotelServiceAddView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\LoginView.resx">
+      <DependentUpon>LoginView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\HotelService\HotelServiceView.resx">
+      <DependentUpon>HotelServiceView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Report\FormReport.resx">
+      <DependentUpon>FormReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reservation\ReservationCheckOutView.resx">
+      <DependentUpon>ReservationCheckOutView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reservation\ReservationServiceUsageCreateView.resx">
+      <DependentUpon>ReservationServiceUsageCreateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reservation\ReservationServiceUsageView.resx">
+      <DependentUpon>ReservationServiceUsageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reservation\ReservationUpdateView.resx">
+      <DependentUpon>ReservationUpdateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reservation\ReservationCreateView.resx">
+      <DependentUpon>ReservationCreateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RoomAmenityUsage\FormRoomAmenityUsageCreate.resx">
+      <DependentUpon>FormRoomAmenityUsageCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RoomAmenityUsage\FormRoomAmenityUsageUpdate.resx">
+      <DependentUpon>FormRoomAmenityUsageUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reservation\ReservationView.resx">
+      <DependentUpon>ReservationView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Reservation\ReservationDetailView.resx">
+      <DependentUpon>ReservationDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Room\RoomDetailView.resx">
+      <DependentUpon>RoomDetailView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Room\RoomView.resx">
+      <DependentUpon>RoomView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Room\RoomUpdateView.resx">
+      <DependentUpon>RoomUpdateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Room\RoomAddView.resx">
+      <DependentUpon>RoomAddView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Amenity\AmenityView.resx">
+      <DependentUpon>AmenityView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Amenity\AmenityAddView.resx">
+      <DependentUpon>AmenityAddView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Amenity\AmenityUpdateView.resx">
+      <DependentUpon>AmenityUpdateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RoomType\RoomTypeView.resx">
+      <DependentUpon>RoomTypeView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RoomType\RoomTypeAddView.resx">
+      <DependentUpon>RoomTypeAddView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\RoomType\RoomTypeUpdateView.resx">
+      <DependentUpon>RoomTypeUpdateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\StaffUpdateView.resx">
+      <DependentUpon>StaffUpdateView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\StaffAddView.resx">
+      <DependentUpon>StaffAddView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Staff\StaffView.resx">
+      <DependentUpon>StaffView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Main\DashboardView.resx">
+      <DependentUpon>DashboardView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Customer\CustomerAddView.resx">
+      <DependentUpon>CustomerAddView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\Customer\CustomerView.resx">
+      <DependentUpon>CustomerView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Views\Report\ReportDataSet.xsc">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="Views\Report\ReportDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Views\Report\ReportDataSet.xss">
+      <DependentUpon>ReportDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HotelManagement.Domain\HotelManagement.Domain.csproj">
+      <Project>{9fd1b5a7-7bc2-4c32-b8ed-2695f8f2af89}</Project>
+      <Name>HotelManagement.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HotelManagement.Infrastructure\HotelManagement.Infrastructure.csproj">
+      <Project>{74e71615-45d8-4657-88cd-f3246741bc20}</Project>
+      <Name>HotelManagement.Infrastructure</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.SqlServer.Types.160.1000.6\build\net462\Microsoft.SqlServer.Types.props'))" />
+  </Target>
+</Project>

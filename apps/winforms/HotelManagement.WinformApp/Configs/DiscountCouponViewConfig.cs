@@ -1,0 +1,34 @@
+﻿using HotelManagement.Domain.Enums;
+using HotelManagement.WinformApp.Common;
+using System.Collections.Generic;
+
+namespace HotelManagement.WinformApp.Constants
+{
+    public static class DiscountCouponViewConfig
+    {
+        public static readonly Dictionary<int, string> PageOffset = new Dictionary<int, string>
+        {
+            { 20, "20 / page" },
+            { 40, "40 / page" },
+            { 60, "60 / page" },
+        };
+
+        public static readonly Dictionary<DiscountCouponStatus, string> StatusDescription = new Dictionary<DiscountCouponStatus, string>()
+        {
+
+            { DiscountCouponStatus.AVAILABLE, "Available" },
+            { DiscountCouponStatus.UNAVAILABLE, "Unavailable" },
+            { DiscountCouponStatus.USED, "Used" },
+            { DiscountCouponStatus.EXPIRED, "Expired" },
+        };
+
+        public static readonly Dictionary<DiscountCouponStatus, dynamic> StatusColor = new Dictionary<DiscountCouponStatus, dynamic>()
+        {
+
+            { DiscountCouponStatus.AVAILABLE, new ResourceStatusColor { LightHex = MaterialColor.Green._200, DarkHex = MaterialColor.Green._600 } },
+            { DiscountCouponStatus.UNAVAILABLE, new ResourceStatusColor { LightHex = MaterialColor.Red._200, DarkHex = MaterialColor.Red._600 } },
+            { DiscountCouponStatus.USED, new ResourceStatusColor { LightHex = MaterialColor.Orange._200, DarkHex = MaterialColor.Orange._600 } },
+            { DiscountCouponStatus.EXPIRED, new ResourceStatusColor { LightHex = MaterialColor.Purple._200, DarkHex = MaterialColor.Purple._600 } },
+        };
+    }
+}
